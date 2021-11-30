@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using tictactoe_wpf.Class;
 
 namespace tictactoe_wpf.View
 {
@@ -35,8 +36,22 @@ namespace tictactoe_wpf.View
             Thread.Sleep(3000);
             Application.Current.Dispatcher.Invoke(() =>
             {
-                var main = new GameWindow();
-                main.Show();
+                if (Properties.Settings.Default.firstLaunch)
+                {
+                    var authWindow = new AuthWindow();
+                    authWindow.Show();
+                }
+                else
+                {
+                    UserLifecycle.user = new User(
+                        Properties.Settings.Default.username,
+                        Properties.Settings.Default.gamesAmount,
+                        Properties.Settings.Default.winsAmount,
+                        Properties.Settings.Default.losesAmount);
+
+                    var main = new GameWindow();
+                    main.Show();
+                }
 
                 this.Hide();
             });

@@ -12,35 +12,32 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using tictactoe_wpf.Class;
+using tictactoe_wpf.Model;
 
 namespace tictactoe_wpf.View
 {
     /// <summary>
-    /// Логика взаимодействия для GameWindow.xaml
+    /// Логика взаимодействия для AuthWindow.xaml
     /// </summary>
-    public partial class GameWindow : Window
+    public partial class AuthWindow : Window
     {
-        public GameWindow()
+        public AuthWindow()
         {
             InitializeComponent();
+            UserLifecycle.user = new User(
+                (DataContext as AuthWindowViewModel).Username);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            
         }
-
         private void borderHeader_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
                 this.DragMove();
             }
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

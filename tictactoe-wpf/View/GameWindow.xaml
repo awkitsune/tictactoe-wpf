@@ -6,79 +6,262 @@
         xmlns:local="clr-namespace:tictactoe_wpf.View"
         xmlns:Model="clr-namespace:tictactoe_wpf.Model" x:Class="tictactoe_wpf.View.GameWindow"
         mc:Ignorable="d"
-        Title="tictactoe!" Height="450" Width="270" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Background="Transparent" Icon="/tictactoe-wpf;component/Assets/appIcon.png"
-        Closing="Window_Closing">
+        Title="tictactoe!" Height="450" Width="270" 
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
+        AllowsTransparency="True" WindowStyle="None" 
+        Background="Transparent" 
+        Icon="/tictactoe-wpf;component/Assets/appIcon.png"
+        Closing="Window_Closing"
+    Loaded="Window_Loaded">
     <Window.DataContext>
         <Model:GameWindowViewModel/>
     </Window.DataContext>
     <Grid Background="#00000000">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="64"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Name="rowHeader" Height="32"/>
             <RowDefinition Name="rowUserdata" Height="auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="32"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition />
+            <RowDefinition Height="64"/>
         </Grid.RowDefinitions>
-        <Border Background="#ffff" 
-                CornerRadius="8"
-                Grid.RowSpan="5"
-                Grid.ColumnSpan="2"/>
 
+        <Border CornerRadius="8"
+                Grid.RowSpan="5"
+                Grid.ColumnSpan="2">
+            <Border.Background>
+                <ImageBrush Stretch="UniformToFill" ImageSource="/tictactoe-wpf;component/Assets/window_bg_autumn.jpg"/>
+            </Border.Background>
+
+        </Border>
+
+        <!--WindowHeader panel-->
         <Border Grid.ColumnSpan="2"
-                x:Name="borderHeader"
-                Background="#0000"
+                Name="borderHeader"
+                Background="#b000"
                 CornerRadius="8 8 0 0"
-                BorderThickness="0 0 0 1"
-                BorderBrush="#aaa"
                 MouseDown="borderHeader_MouseDown"/>
 
+        <!--WindowInfo panel-->
+        <Border Background="#fff"
+                Width="32"
+                HorizontalAlignment="Left"
+                CornerRadius="8">
+            <Border.Effect>
+                <DropShadowEffect Direction="270" Opacity="0.25"/>
+            </Border.Effect>
+        </Border>
         <StackPanel Orientation="Horizontal">
             <Image Width="18" Height="18" 
                    Margin="6"
                    RenderOptions.BitmapScalingMode="HighQuality" 
                    Source="/tictactoe-wpf;component/Assets/appIcon.png"/>
             <TextBlock Text="tictactoe!"
-                   VerticalAlignment="Center"
-                   Margin="4"/>
+                       VerticalAlignment="Center"
+                       Margin="8"
+                       Foreground="#fff"/>
         </StackPanel>
+
+        <!-- WindowsControls panel -->
+        <Border Background="#fff"
+                Grid.Column="1"
+                Width="60"
+                HorizontalAlignment="Right"
+                CornerRadius="8">
+            <Border.Effect>
+                <DropShadowEffect Direction="270" Opacity="0.25"/>
+            </Border.Effect>
+        </Border>
         <StackPanel Orientation="Horizontal"
                     Grid.Column="1"
                     HorizontalAlignment="Right"
-                    Margin="0 0 6 0">
-            <Button x:Name="buttonMinimize" Width="24"
+                    Margin="4 0">
+            <Button x:Name="buttonMinimize" Width="24" Height="24"
                     Background="#0000"
                     BorderThickness="0"
                     Padding="0"
-                    Margin="0 0 2 0" Command="{Binding MinimizeWindow, Mode=OneWay}">
+                    Margin="0 0 4 0" Command="{Binding MinimizeWindow, Mode=OneWay}">
                 <Image Source="/tictactoe-wpf;component/Assets/outline_minimize_black_24dp.png"/>
             </Button>
-            <Button x:Name="buttonClose" Width="24"
+            <Button x:Name="buttonClose" Width="24" Height="24"
                     Background="#0000"
                     BorderThickness="0"
                     Padding="0" Command="{Binding CloseWindow, Mode=OneWay}">
                 <Image Source="/tictactoe-wpf;component/Assets/outline_close_black_24dp.png"/>
             </Button>
         </StackPanel>
-
+        
+        <!-- Userdata panel -->
+        <Border Background="#b000"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                CornerRadius="0 0 8 8">
+            <Border.Effect>
+                <DropShadowEffect Direction="270" Opacity="0.25" BlurRadius="8"/>
+            </Border.Effect>
+        </Border>
         <StackPanel x:Name="stackpanelUserdata"
                     Orientation="Vertical"
                     Grid.Row="1"
                     Grid.ColumnSpan="2"
-                    Margin="6" Visibility="{Binding SPUserdataVisibility}">
+                    Margin="8 6">
             <TextBlock Text="{Binding Username}"
-                       FontSize="24"/>
+                       FontSize="24"
+                       Foreground="#fff"/>
             <TextBlock Text="{Binding Games}"
-                       Margin="0 2"/>
+                       Margin="0 2"
+                       Foreground="#fff"/>
             <StackPanel Orientation="Horizontal"
                         Margin="0 2">
                 <TextBlock Text="{Binding Wins}" 
-                           Margin="0 0 4 0"/>
-                <TextBlock Text="{Binding Loses}"/>
+                           Margin="0 0 4 0"
+                           Foreground="#fff"/>
+                <TextBlock Text="{Binding Loses}"
+                           Foreground="#fff"/>
             </StackPanel>
         </StackPanel>
+
+        <!-- Game panel-->
+        <Border Background="#b000"
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                CornerRadius="8"
+                Margin="8"
+                Width="254"
+                Height="254">
+            <Border.Effect>
+                <DropShadowEffect Direction="270" Opacity="0.25" BlurRadius="8"/>
+            </Border.Effect>
+        </Border>
+        <Grid Name="gridGame" 
+              Grid.Row="2"
+              Grid.ColumnSpan="2"
+              Margin="8"
+              Width="254"
+              Height="254" IsEnabled="{Binding GridGameEnabled}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0"
+                   Grid.Column="0"
+                   Width="76"
+                   Height="76"
+                   Name="b00"
+                   Margin="4" Source="/tictactoe-wpf;component/Assets/outline_panorama_fish_eye_white_36dp.png"
+                   />
+            <Image Grid.Row="0"
+                   Grid.Column="1"
+                   Width="76"
+                   Height="76"
+                   Name="b10"
+                   Margin="4"/>
+            <Image Grid.Row="0"
+                   Grid.Column="2"
+                   Width="76"
+                   Height="76"
+                   Name="b20"
+                   Margin="4"/>
+
+            <Image Grid.Row="1"
+                   Grid.Column="0"
+                   Width="76"
+                   Height="76"
+                   Name="b01"
+                   Margin="4"/>
+            <Image Grid.Row="1"
+                   Grid.Column="1"
+                   Width="76"
+                   Height="76"
+                   Name="b11"
+                   Margin="4"/>
+            <Image Grid.Row="1"
+                   Grid.Column="2"
+                   Width="76"
+                   Height="76"
+                   Name="b21"
+                   Margin="4"/>
+
+            <Image Grid.Row="2"
+                   Grid.Column="0"
+                   Width="76"
+                   Height="76"
+                   Name="b02"
+                   Margin="4"/>
+            <Image Grid.Row="2"
+                   Grid.Column="1"
+                   Width="76"
+                   Height="76"
+                   Name="b12"
+                   Margin="4"/>
+            <Image Grid.Row="2"
+                   Grid.Column="2"
+                   Width="76"
+                   Height="76"
+                   Name="b22"
+                   Margin="4" Source="/tictactoe-wpf;component/Assets/outline_close_white_36dp.png"/>
+        </Grid>
+
+        <!--BottomMenu panel-->
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="3"
+                    Margin="8 0"
+                    VerticalAlignment="Center">
+            <Button Content="About"
+                    Margin="0 0 0 4"
+                    Height="24"
+                    Background="#b000"
+                    Foreground="#fff">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="8"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Effect>
+                    <DropShadowEffect Direction="270" Opacity="0.25"/>
+                </Button.Effect>
+            </Button>
+            <Button Content="Logout"
+                    Height="24"
+                    Background="#b000"
+                    Foreground="#fff">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="8"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Effect>
+                    <DropShadowEffect Direction="270" Opacity="0.25"/>
+                </Button.Effect>
+            </Button>
+        </StackPanel>
+        <Button Background="#b000"
+                Foreground="#fff"
+                Grid.Row="3"
+                Grid.Column="1"
+                Margin="4"
+                VerticalContentAlignment="Center"
+                Command="{Binding RestartClick, Mode=OneWay}">
+            <Image Width="24" Height="24"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Source="/tictactoe-wpf;component/Assets/outline_restart_alt_white_24dp.png"/>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="28"/>
+                </Style>
+            </Button.Resources>
+            <Button.Effect>
+                <DropShadowEffect Direction="270" Opacity="0.25"/>
+            </Button.Effect>
+        </Button>
     </Grid>
 </Window>

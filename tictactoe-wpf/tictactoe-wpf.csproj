@@ -62,9 +62,15 @@
     </Compile>
     <Compile Include="Class\GameField.cs" />
     <Compile Include="Class\Pair.cs" />
+    <Compile Include="Class\User.cs" />
+    <Compile Include="Class\UserLifecycle.cs" />
     <Compile Include="Class\Utilities.cs" />
+    <Compile Include="Model\AuthWindowViewModel.cs" />
     <Compile Include="Model\DelegateCommand.cs" />
     <Compile Include="Model\GameWindowViewModel.cs" />
+    <Compile Include="View\AuthWindow.xaml.cs">
+      <DependentUpon>AuthWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
@@ -100,6 +106,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\AuthWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GameWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -117,6 +127,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\outline_minimize_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\window_bg_autumn.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\outline_restart_alt_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\outline_close_white_36dp.png" />
+    <Resource Include="Assets\outline_panorama_fish_eye_white_36dp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
