@@ -46,13 +46,32 @@ namespace tictactoe_wpf.Model
                 var gameWindow = new GameWindow();
                 gameWindow.Show();
 
-                Application.Current.Windows[1].Hide();
+                foreach (Window item in Application.Current.Windows)
+                {
+                    if (item is AuthWindow)
+                    {
+                        item.Hide();
+                    }
+                }
             }
         }
         void CloseApp(object obj)
         {
-            Application.Current.Windows[1].Close();
-            Application.Current.Windows[0].Close();
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is GameWindow)
+                {
+                    item.Close();
+                }
+                if (item is AuthWindow)
+                {
+                    item.Close();
+                }
+                if (item is SplashWindow)
+                {
+                    item.Close();
+                }
+            }
         }
         void MinimizeApp(object obj)
         {

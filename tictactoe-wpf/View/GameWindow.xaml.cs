@@ -42,5 +42,9 @@ namespace tictactoe_wpf.View
         {
 
         }
+        public void UpdateField()
+        {
+
+        }
     }
 }

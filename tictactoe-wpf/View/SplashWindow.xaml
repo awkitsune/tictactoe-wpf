@@ -17,25 +17,33 @@
             <RowDefinition Height="32"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Border Background="#ffff" 
+        <Border Background="#b000" 
                 CornerRadius="8"
                 Grid.RowSpan="3"
                 Grid.ColumnSpan="3"/>
 
+        <Border Background="#fff"
+                CornerRadius="8"
+                Grid.RowSpan="3" />
         <Image Grid.RowSpan="3"
                Margin="8" 
                Source="/tictactoe-wpf;component/Assets/appIcon.png" 
                Stretch="Fill"
                RenderOptions.BitmapScalingMode="HighQuality"/>
+        
         <TextBlock Grid.Row="1" 
                    Grid.Column="1"
                    VerticalAlignment="Center"
                    FontSize="32"
                    FontWeight="Bold"
-                   Text="tictactoe!"/>
+                   Text="tictactoe!"
+                   Foreground="#fff"
+                   Margin="8 0"/>
         <TextBlock Grid.Row="2" 
                    Grid.Column="1"
                    FontSize="16"
-                   Text="by Awkitsune"/>
+                   Text="by Awkitsune"
+                   Foreground="#fff"
+                   Margin="8 0" />
     </Grid>
 </Window>

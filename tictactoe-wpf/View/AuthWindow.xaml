@@ -37,7 +37,6 @@
 
         <!--WindowHeader panel-->
         <Border Grid.ColumnSpan="2"
-                Grid.RowSpan="3"
                 x:Name="borderHeader"
                 Background="#b000"
                 CornerRadius="8 8 0 0"
@@ -100,14 +99,18 @@
                     Margin="8">
             <TextBlock Text="Username" 
                        Foreground="#fff"
-                       FontSize="18"/>
+                       Background="#b000"
+                       FontSize="18"
+                       HorizontalAlignment="Left"
+                       Padding="4 0"/>
             <TextBox Height="32"
                      Margin="0 4" 
                      Text="{Binding Username, Mode=TwoWay}"
                      FontSize="18"
                      VerticalContentAlignment="Center"
                      MaxLength="20"
-                     MaxLines="1">
+                     MaxLines="1"
+                     Style="{DynamicResource DarkTransparentTextBox}">
                 <!--STYLE HERE-->
             </TextBox>
         </StackPanel>
@@ -115,8 +118,7 @@
         <Button Grid.Row="2" Grid.ColumnSpan="2"
                 Height="24"
                 Margin="8"
-                Content="Login" Command="{Binding LogUserIn, Mode=OneWay}">
-            <!--STYLE HERE-->
+                Content="Login" Command="{Binding LogUserIn, Mode=OneWay}" Style="{DynamicResource DarkTransparentButton}">
         </Button>
     </Grid>
 </Window>
