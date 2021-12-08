@@ -60,6 +60,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Class\BooleanToCursorConverter.cs" />
     <Compile Include="Class\GameField.cs" />
     <Compile Include="Class\Pair.cs" />
     <Compile Include="Class\User.cs" />
@@ -68,6 +69,9 @@
     <Compile Include="Model\AuthWindowViewModel.cs" />
     <Compile Include="Model\DelegateCommand.cs" />
     <Compile Include="Model\GameWindowViewModel.cs" />
+    <Compile Include="View\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AuthWindow.xaml.cs">
       <DependentUpon>AuthWindow.xaml</DependentUpon>
     </Compile>
@@ -109,6 +113,10 @@
     <Page Include="Assets\Styles\GlobalTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AboutWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AuthWindow.xaml">
       <SubType>Designer</SubType>

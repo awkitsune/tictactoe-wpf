@@ -1,0 +1,45 @@
+﻿<Window x:Class="tictactoe_wpf.View.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tictactoe_wpf.View"
+        mc:Ignorable="d"
+        Title="About game"
+        Height="140"
+        Width="280"
+        ResizeMode="NoResize"
+        Icon="/tictactoe-wpf;component/Assets/appIcon.png"
+        WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+
+        <Image Grid.RowSpan="3"
+               Margin="8"
+               Source="/tictactoe-wpf;component/Assets/appIcon.png"
+               RenderOptions.BitmapScalingMode="HighQuality" />
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   FontSize="32"
+                   FontWeight="Bold"
+                   Text="tictactoe!"
+                   Foreground="#000"
+                   Margin="8 0" />
+        <TextBlock Grid.Row="2"
+                   Grid.Column="1"
+                   FontSize="16"
+                   Text="by Awkitsune"
+                   Foreground="#000"
+                   Margin="8 0" />
+    </Grid>
+</Window>

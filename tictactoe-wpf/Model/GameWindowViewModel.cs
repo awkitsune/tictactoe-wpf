@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -20,8 +21,9 @@ namespace tictactoe_wpf.Model
         public ICommand FieldClick { get; private set; }
         public ICommand RestartClick { get; private set; }
         public ICommand LogoutClick { get; private set; }
+        public ICommand AboutClick { get; private set; }
 
-        private bool gridGameEnabled = true;
+        private bool gridGameEnabled = false;
 
         private GameField gameField = new GameField();
 
@@ -32,8 +34,8 @@ namespace tictactoe_wpf.Model
             FieldClick = new DelegateCommand(GridCellClick);
             RestartClick = new DelegateCommand(RestartGame);
             LogoutClick = new DelegateCommand(LogoutUser);
+            AboutClick = new DelegateCommand(OpenAbout);
         }
-
 
         public bool GridGameEnabled
         {
@@ -366,6 +368,20 @@ namespace tictactoe_wpf.Model
                 Properties.Settings.Default.firstLaunch = true;
                 Properties.Settings.Default.Save();
                 CloseApp(obj);
+            }
+        }
+
+
+        private void OpenAbout(object obj)
+        {
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is GameWindow)
+                {
+                    var about = new AboutWindow();
+                    about.Owner = item;
+                    about.ShowDialog();
+                }
             }
         }
 
